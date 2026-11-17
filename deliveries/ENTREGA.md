@@ -1,7 +1,9 @@
-# Entrega general — Proyecto final SSDLC (OWASP Juice Shop)
+# ENTREGA — Seguimiento del proyecto final SSDLC (OWASP Juice Shop)
 
-> **Documento de seguimiento del equipo.** Se actualiza al cerrar cada fase.
-> La guía técnica de implementación está en `context/guia-implementacion-fases.md`.
+> **Documento de seguimiento del equipo.** Se actualiza al cerrar cada fase. Es el único documento de
+> seguimiento versionado; todo lo que se entrega vive en `deliveries/`.
+>
+> **Guía técnica interna:** `context/guia-implementacion-fases.md` (no se versiona; ver §12).
 >
 > **Última actualización:** 17-nov-2026
 > **Estado global:** base limpia preparada · Fases 0–2 en preparación · Fases 3–8 no iniciadas
@@ -32,7 +34,7 @@ La base del repositorio quedó preparada como fork “limpio” de Juice Shop:
 - Se retiró el material ajeno al proyecto: solución de retos, referencias, capturas, monitoreo, Vagrant, IaC intencionalmente insegura, RSN, parches de retos, artefactos FTP/CTF y documentación de la comunidad upstream.
 - El catálogo de retos quedó vacío (`data/static/challenges.yml` → `[]`), manteniendo el motor y la UI para no romper la aplicación.
 - Se añadieron exclusiones locales a `.gitignore` para secretos, reportes de herramientas y volúmenes de Dependency-Track/DefectDojo.
-- El `README.md` se reescribió para el proyecto y la documentación del equipo vive en `context/`.
+- El `README.md` se reescribió para el proyecto y el seguimiento oficial vive en `deliveries/ENTREGA.md`.
 - El backend compila sin errores (`tsc --noEmit`) y el frontend compila en modo producción.
 - La aplicación arranca y responde en `http://localhost:3000` (SPA, `/api/Challenges`, `/rest/admin/application-version`).
 
@@ -99,16 +101,18 @@ Leyenda: ⬜ No iniciada · 🔄 En curso · ✅ Completada · ⚠️ Con observ
 | 23 | `.well-known/security.txt`, `.well-known/csaf/provider-metadata.json` | Restaurados desde upstream | `data/datacreator.ts` los lee al arrancar; sin ellos la app no inicia |
 | 24 | `README.md` | Reemplazado | El original era material de marketing de upstream; ahora describe el proyecto, su estado y cómo ejecutarlo |
 | 25 | `frontend/src/assets/private/*.js` | Des-ignorados en `.gitignore` | Los carga `routes/easterEgg.ts`; con la regla anterior un clon limpio quedaría incompleto |
+| 26 | `context/` | Excluido del repositorio | Contiene material del enunciado y notas de trabajo internas; no forma parte de la entrega |
+| 27 | `context/entrega-general.md` | Movido a `deliveries/ENTREGA.md` | Los entregables se agrupan en `deliveries/` y el documento pasa a llamarse `ENTREGA.md` |
 
 **Conservado a propósito:** `encryptionkeys/jwt.pub` (se lee al cargar `lib/insecurity.ts`; sin ella la app no
 arranca), `threat-model.json` (modelo Threat Dragon base, sin amenazas, útil para la Fase 2), `swagger.yml`
 (insumo para ZAP API scan), pruebas y Cypress (red de seguridad; ver deuda conocida).
 
 > **Nota sobre el primer commit.** La rama no tiene commits previos, así que el commit inicial registra los
-> 1194 archivos de la aplicación (23.7 MB) y **no muestra eliminaciones**: las rutas retiradas simplemente ya no
+> 1193 archivos de la aplicación (23.7 MB) y **no muestra eliminaciones**: las rutas retiradas simplemente ya no
 > existen. El conteo corresponde a código propio de Juice Shop (`frontend/src` 803, `test/` 160, `routes/` 63,
-> `data/static` 53, `models/` y `lib/` 49, `config/` 14), sin `node_modules/`, `build/`, `frontend/dist/` ni
-> artefactos de herramientas.
+> `data/static` 53, `models/` y `lib/` 49, `config/` 14), más `deliveries/ENTREGA.md`; queda fuera `context/`
+> junto con `node_modules/`, `build/`, `frontend/dist/` y los artefactos de herramientas.
 
 ### 5.2 Cambios funcionales
 
@@ -134,7 +138,8 @@ arranca), `threat-model.json` (modelo Threat Dragon base, sin amenazas, útil pa
 | D-07 | No implementar fases 3–8 en esta iteración | Adelantar pipeline | Instrucción del equipo: primero base limpia y Fases 0–2 |
 | D-08 | Restaurar solo el `.well-known` mínimo y descartar el archivo CSAF histórico | Restaurar `.well-known` completo / parchear `datacreator.ts` | El archivo histórico son avisos de vulnerabilidades de upstream (ruido); parchear código propio por un archivo faltante crea deuda evitable |
 | D-09 | Reescribir `README.md` para el proyecto | Conservar el README de upstream | El repositorio debe explicar qué se entrega y cómo se ejecuta; el texto original no aporta al curso |
-| D-10 | Publicar `context/*.md` pero no el material del enunciado | Versionar toda la carpeta `context/` | Los PDF del curso no son de nuestra autoría; solo se versionan los documentos del equipo |
+| D-10 | No versionar `context/`; los entregables viven en `deliveries/` | Versionar toda la carpeta `context/` | El material del enunciado no es de nuestra autoría y las notas de trabajo no aportan a la entrega; `deliveries/` concentra lo que sí se evalúa |
+| D-11 | Renombrar el seguimiento a `deliveries/ENTREGA.md` | Mantener `entrega-general.md` | Un nombre único, en mayúsculas y visible en la raíz de `deliveries/` |
 
 ---
 
@@ -167,7 +172,7 @@ arranca), `threat-model.json` (modelo Threat Dragon base, sin amenazas, útil pa
 | SPA servida | `GET http://localhost:3000/` | ✅ 200 (HTML de Angular) | 17-nov |
 | API de retos | `GET /api/Challenges` | ✅ 200 con `data: []` | 17-nov |
 | Versión de aplicación | `GET /rest/admin/application-version` | ✅ 200 | 17-nov |
-| Archivos a versionar | `git add -A -n` | ✅ 1194 archivos; sin `node_modules/`, `build/`, `frontend/dist/` ni artefactos | 17-nov |
+| Archivos a versionar | `git add -A -n` | ✅ 1193 archivos; sin `context/`, `node_modules/`, `build/`, `frontend/dist/` ni artefactos | 17-nov |
 
 > **Requisito de entorno:** Angular 22 exige Node `^22.22.3 || ^24.15.0 || >=26.0.0`. Con Node 22.14 el
 > `ng build` se detiene por comprobación de versión; en la verificación se usó Node 24.22.3. El backend
@@ -184,7 +189,7 @@ El enunciado permite asistentes de IA si se declaran y el equipo puede defender 
 
 | Herramienta | Uso | Archivos afectados | Revisado por el equipo |
 |---|---|---|---|
-| Asistente de IA (OpenCode) | Análisis del PDF, limpieza del repositorio y redacción de guías | `context/*.md`, limpieza de base | ⬜ Pendiente de revisión |
+| Asistente de IA (OpenCode) | Análisis del PDF, limpieza del repositorio, redacción de la guía interna y de `ENTREGA.md` | `deliveries/ENTREGA.md`, `README.md`, limpieza de base | ⬜ Pendiente de revisión |
 | — | — | — | — |
 
 > Completar con cualquier otra herramienta usada (Copilot, ChatGPT, etc.). El equipo debe poder explicar
@@ -199,7 +204,7 @@ El enunciado permite asistentes de IA si se declaran y el equipo puede defender 
 3. Crear `security/diseno/` con los cuatro documentos de la Fase 1.
 4. Importar `threat-model.json` en Threat Dragon, añadir las 16 amenazas y exportar el modelo.
 5. Escribir la matriz de trazabilidad y el borrador de política de excepciones.
-6. Preparar el PDF del avance (portada, resumen, Fases 0–2).
+6. Preparar el PDF del avance en `deliveries/avance-2026-11-18.pdf` (portada, resumen, Fases 0–2).
 7. Recién después, iniciar Fase 3 (secretos + SAST) y Fase 4 (SBOM + SCA).
 
 ---
@@ -215,6 +220,22 @@ El enunciado permite asistentes de IA si se declaran y el equipo puede defender 
 | Remediación y gestión | 2 | PR de corrección + DefectDojo + VEX (Fase 7) | ⬜ |
 | Plan de pentest y madurez | 2 | `security/pentest-plan.md` + `samm-final.md` (Fase 8) | ⬜ |
 | Defensa oral | 2 | Demo y explicación | ⬜ |
+
+---
+
+## 12. Entregables (`deliveries/`)
+
+Todo lo que se entrega al docente se versiona en `deliveries/`. La carpeta `context/` (material del enunciado
+y notas de trabajo) queda excluida del repositorio mediante `.gitignore`.
+
+| Archivo | Contenido | Estado |
+|---|---|---|
+| `ENTREGA.md` | Este documento: hitos, fases, decisiones, deuda y verificaciones | ✅ |
+| `avance-2026-11-18.pdf` | Informe de avance: madurez inicial, diseño y pipeline con SAST + SCA | ⬜ |
+| `entrega-final-2026-12-02.pdf` | Documento técnico final (15–25 p.) | ⬜ |
+
+Convención de nombres: `<tipo>-<fecha>.pdf` en minúsculas y sin tildes, para que el archivo se pueda citar
+desde el informe sin problemas de codificación.
 
 ---
 

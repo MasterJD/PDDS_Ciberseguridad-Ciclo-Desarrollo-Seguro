@@ -19,7 +19,7 @@ Esta copia es un **fork depurado** de Juice Shop, preparado como línea base del
   interfaz de *Score Board* se conservan para no romper la aplicación, pero no hay retos activos.
 - Se retiró el material ajeno al proyecto: soluciones y referencias de retos, capturas, monitoreo, Vagrant,
   infraestructura intencionalmente insegura de los retos, RSN, parches de retos y artefactos FTP/CTF.
-- El detalle de cada eliminación, decisión y deuda conocida está en [`context/entrega-general.md`](context/entrega-general.md).
+- El detalle de cada eliminación, decisión y deuda conocida está en [`deliveries/ENTREGA.md`](deliveries/ENTREGA.md).
 
 > ⚠️ **Juice Shop es intencionalmente inseguro.** No lo despliegues en producción ni expongas la instancia a
 > Internet. Cualquier IaC de los retos originales fue eliminada; el `Dockerfile` de la raíz es solo para uso local.
@@ -28,8 +28,8 @@ Esta copia es un **fork depurado** de Juice Shop, preparado como línea base del
 
 | Documento | Contenido |
 |---|---|
-| [`context/entrega-general.md`](context/entrega-general.md) | Seguimiento de hitos, fases, decisiones, deuda y verificaciones |
-| [`context/guia-implementacion-fases.md`](context/guia-implementacion-fases.md) | Guía técnica de las fases 0–2 (madurez, diseño y modelo de amenazas) |
+| [`deliveries/ENTREGA.md`](deliveries/ENTREGA.md) | Seguimiento de hitos, fases, decisiones, deuda y verificaciones |
+| [`deliveries/`](deliveries/) | Entregables del curso (informes en PDF) |
 | [`AGENTS.md`](AGENTS.md) | Convenciones del repositorio y reglas para asistentes de IA |
 
 ## Requisitos
@@ -82,7 +82,7 @@ npm run lint                # ESLint + Stylelint
 ```
 
 Algunas pruebas E2E y de API asumen retos concretos y fallarán mientras el catálogo esté vacío; están
-registradas como deuda conocida en `context/entrega-general.md`.
+registradas como deuda conocida en `deliveries/ENTREGA.md`.
 
 ## Estructura del repositorio
 
@@ -96,7 +96,7 @@ frontend/              Aplicación Angular
 config/                Configuración por entorno (YAML)
 test/                  Pruebas unitarias y de integración
 cypress/               Pruebas E2E
-context/               Documentación del proyecto
+deliveries/            Entregables del curso (ENTREGA.md, informes PDF)
 threat-model.json      Modelo Threat Dragon base (Fase 2)
 ```
 

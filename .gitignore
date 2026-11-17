@@ -1,7 +1,5 @@
-# Course context: raw assignment material stays local, team documents are versioned
-/context/*
-!/context/guia-implementacion-fases.md
-!/context/entrega-general.md
+# Course material and internal working notes stay local; only `deliveries/` is versioned
+/context/
 # App
 node_modules/
 *.sqlite
