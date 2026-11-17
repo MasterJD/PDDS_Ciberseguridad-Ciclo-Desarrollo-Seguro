@@ -1,0 +1,110 @@
+# Course context: raw assignment material stays local, team documents are versioned
+/context/*
+!/context/guia-implementacion-fases.md
+!/context/entrega-general.md
+# App
+node_modules/
+*.sqlite
+order_*.pdf
+app/
+!frontend/src/app
+uploads/complaints/*.*
+!uploads/complaints/.gitkeep
+ftp/legal.md
+package-lock.json
+i18n/*.json
+i18n/*.invalid
+!frontend/src/assets/i18n/*.json
+!data/static/i18n/*.json
+/data/juiceshop.sqlite-journal
+
+# Build
+.nyc_output/
+.sass-cache/
+build/
+cache/
+coverage/
+dist/
+logs/
+vagrant/.vagrant/
+*.orig
+*.out
+*.log
+JSON
+JSON.map
+frontend/src/**/*.js
+# Vendored three.js easter-egg assets are loaded by routes/easterEgg.ts; they must be versioned
+!frontend/src/assets/private/*.js
+/bom.json
+/bom.xml
+
+# IDEs
+.idea/
+.vscode/
+out/
+*.eml
+*.iml
+*.iws
+*.swp
+.ai/mcp/mcp.json
+.junie/memory/
+.junie/plans/
+
+# Branch ghpages
+assets/
+!frontend/src/assets/
+
+# Custom configuration files
+config/*.yml
+!config/addo.yml
+!config/bodgeit.yml
+!config/ctf.yml
+!config/fbctf.yml
+!config/default.yml
+!config/juicebox.yml
+!config/quiet.yml
+!config/test.yml
+!config/7ms.yml
+!config/mozilla.yml
+!config/unsafe.yml
+!config/tutorial.yml
+!config/oss.yml
+!config/defcon33.yml
+
+# System Files
+.DS_Store
+
+# Misc
+.playwright-mcp/
+cypress/screenshots/
+
+# Local environment and secrets (never commit these)
+.env
+.env.*
+!.env.example
+docker-compose.override.yml
+*.local.yml
+
+# Generated security artifacts (build/SBOM evidence belongs in security/sbom when intended)
+/reports/
+/security/reports/
+/sbom.json
+/sbom.cdx.json
+/sbom.spdx.json
+/grype-results.json
+/trivy-results.json
+/checkov-results.json
+/zap-report.html
+/zap-report.json
+/zap-report.xml
+/.zap/reports/
+
+# Local containers/volumes for security tooling
+/.dependency-track/
+/.defectdojo/
+/defectdojo-data/
+
+# Python virtualenvs used by local tooling (semgrep, checkov, etc.)
+.venv/
+__pycache__/
+*.pyc
